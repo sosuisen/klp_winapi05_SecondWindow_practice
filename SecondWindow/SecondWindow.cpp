@@ -54,7 +54,6 @@ LRESULT CALLBACK WndProc(
     HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
-
     static std::wstring text;
     static int moveCounter = 0;
 
@@ -71,7 +70,7 @@ LRESULT CALLBACK WndProc(
         // （なお特殊な漢字は4バイトなのでうまく処理できない）
         std::wstring input = { (wchar_t)wParam }; // wchar_t １文字から成る wstring を作成
         // MessageBox(hwnd, input.c_str(), L"", MB_OK);
-        text = text + input;
+        text += input;
         InvalidateRect(hwnd, NULL, TRUE);
         return 0;
     }
