@@ -42,9 +42,6 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
     // ウィンドウを表示
     ShowWindow(hwnd, nCmdShow);
 
-    // ウィンドウを再描画
-    UpdateWindow(hwnd);
-
     while (GetMessage(&msg, NULL, 0, 0) > 0) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
@@ -53,12 +50,13 @@ int APIENTRY wWinMain(HINSTANCE hInstance,
     return msg.wParam;
 }
 
-std::wstring text;
-int moveCounter = 0;
 LRESULT CALLBACK WndProc(
     HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
+
+    static std::wstring text;
+    static int moveCounter = 0;
 
     switch (uMsg) {
     case WM_MOUSEMOVE:
